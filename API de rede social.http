@@ -1,0 +1,6 @@
+@API_de_rede_social_HostAddress = http://localhost:5029
+
+GET {{API_de_rede_social_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

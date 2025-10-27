@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>API_de_rede_social</RootNamespace>
+    <UserSecretsId>dcf4997b-3bb1-4250-be31-7eb1e707d66a</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.23.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="application\api\usecase\" />
+    <Folder Include="domain\entities\" />
+    <Folder Include="domain\expection\" />
+    <Folder Include="domain\repository\" />
+    <Folder Include="domain\ports\" />
+    <Folder Include="infraestructure\http\controller\" />
+    <Folder Include="infraestructure\database\" />
+    <Folder Include="infraestructure\middleware\" />
+    <Folder Include="infraestructure\utils\" />
+    <Folder Include="infraestructure\security\" />
+    <Folder Include="infraestructure\routes\" />
+    <Folder Include="helpers\" />
+  </ItemGroup>
+
+</Project>
