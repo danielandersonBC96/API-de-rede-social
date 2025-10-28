@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="application\api\usecase\" />
     <Folder Include="domain\expection\" />
-    <Folder Include="domain\repository\" />
     <Folder Include="domain\ports\" />
     <Folder Include="infraestructure\http\controller\" />
     <Folder Include="infraestructure\middleware\" />
