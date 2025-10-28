@@ -2,5 +2,14 @@
 {
     public class UserFollower
     {
+        public Guid UserId{ get; set; }
+
+        public UserEntities User { get; set; }
+
+        public Guid FollowerId { get; set; }
+
+        public UserEntities Follower { get; set; }
+
+      
     }
 }
