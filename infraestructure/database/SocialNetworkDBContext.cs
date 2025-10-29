@@ -18,7 +18,9 @@ namespace API_de_rede_social.infraestructure.database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             // Configuração da relação muitos-para-muitos entre UserEntities e UserFollower
+
             modelBuilder.Entity<UserFollower>()
                 .HasKey(uf => new { uf.UserId, uf.FollowerId });
             modelBuilder.Entity<UserFollower>()
@@ -33,6 +35,7 @@ namespace API_de_rede_social.infraestructure.database
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Configurações adicionais
+
             modelBuilder.Entity<PostEntities>()
                 .Property(p => p.CreateTime)
                 .HasDefaultValueSql("GETUTCDATE()");
