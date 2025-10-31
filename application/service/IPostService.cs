@@ -1,5 +1,5 @@
 ﻿using API_de_rede_social.domain.entities;
-using API_de_rede_social.Domain.Entities;
+
 
 namespace API_de_rede_social.Application.Service
 {

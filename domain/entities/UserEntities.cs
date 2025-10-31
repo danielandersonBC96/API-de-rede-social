@@ -5,6 +5,8 @@ namespace API_de_rede_social.domain.entities
 {
     public class UserEntities
     {
+        internal string Name;
+
         [ConfigurationKeyName("id")]
 
         public Guid Id { get; set; } =  Guid.NewGuid();
@@ -21,6 +23,7 @@ namespace API_de_rede_social.domain.entities
         // Seguidores e seguindo (self-referencing many-to-many)
         public ICollection<UserFollower> Followers { get; set; } = new List<UserFollower>();
         public ICollection<UserFollower> Following { get; set; } = new List<UserFollower>();
-
+        public object UserId { get; internal set; }
+        public DateTime CreatedAt { get; internal set; }
     }
 }
