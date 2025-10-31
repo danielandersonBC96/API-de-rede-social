@@ -1,25 +1,15 @@
 ﻿using API_de_rede_social.domain.entities;
 
-namespace API_de_rede_social.domain.repository
+
+namespace API_de_rede_social.Domain.Repository
 {
-    public class IPostRepository
+    public interface IPostRepository
     {
-        public interface IPosteRepository { 
-        
-        
-            Task< PostEntities?> GetByIdAsync(Guid postId);
-            Task<IEnumerable<PostEntities>> GetAllasync();
-
-            Task<PostEntities> AddAsync(PostEntities post);
-
-            Task<PostEntities> UpdateAsync(PostEntities post);
-
-            Task<PostEntities> DeleteAsync(Guid postId);
-
-            Task SaveChangesAsync();
-
-           
-        
-        }
+        Task<PostEntities?> GetByIdAsync(Guid postId);
+        Task<IEnumerable<PostEntities>> GetAllAsync();
+        Task<PostEntities> AddAsync(PostEntities post);
+        Task<PostEntities> UpdateAsync(PostEntities post);
+        Task DeleteAsync(Guid postId);
+        Task SaveChangesAsync();
     }
 }

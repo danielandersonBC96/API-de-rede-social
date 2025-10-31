@@ -5,7 +5,12 @@ namespace API_de_rede_social.domain.repository
   
 }public class IUserRepository
     {
-        public interface IUseresRepository
+    internal async Task GetByIdAsync(Guid userId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public interface IUseresRepository
         {
             Task<UserEntities?> GetByIdAsync(Guid userId);
             Task<IEnumerable<UserEntities>> GetAllAsync();
