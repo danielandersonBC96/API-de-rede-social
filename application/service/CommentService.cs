@@ -1,41 +1,62 @@
-﻿
-using API_de_rede_social.domain.entities;
+﻿using API_de_rede_social.domain.entities;
 using API_de_rede_social.domain.repository;
+using API_de_rede_social.infraestructure.database.Core;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-
-namespace API_de_rede_social.Application.Service
+namespace API_de_rede_social.application.service
 {
     public class CommentService : ICommentService
     {
-        private readonly ICommentsRespository _commentRepository;
+        private readonly ICommentsRepository _commentRepository;
 
-        public CommentService(ICommentsRespository commentRepository)
+        public CommentService( ICommentsRepository commentRepository)
         {
             _commentRepository = commentRepository;
         }
 
-        public async Task<IEnumerable<CommentEntities>> GetByPostIdAsync(Guid postId)
+        public async Task<IEnumerable<CommentEntities>> GetCommentsByPostIdAsync(Guid postId)
         {
             return await _commentRepository.GetByPostIdAsync(postId);
         }
 
-        public async Task<CommentEntities> CreateAsync(Guid userId, Guid postId, string content)
+        public async Task<CommentEntities?> GetCommentByIdAsync(int id)
+        {
+            return await _commentRepository.GetByIdAsync(id);
+        }
+
+        public async Task<CommentEntities> CreateCommentAsync(Guid postId, Guid userId, string content)
         {
             var comment = new CommentEntities
             {
-                Id = Guid.NewGuid(),
-                UserId = userId,
                 PostId = postId,
+                UserId = userId,
                 Content = content,
                 CreatedAt = DateTime.UtcNow
             };
 
-            return await _commentRepository.AddAsync(comment);
+            await _commentRepository.AddAsync(comment);
+            await _commentRepository.SaveChangesAsync();
+            return comment;
         }
 
-        public async Task DeleteAsync(Guid commentId)
+        public async Task<CommentEntities> UpdateCommentAsync(int id, string newContent)
         {
-            await _commentRepository.DeleteAsync(commentId);
+            var comment = await _commentRepository.GetByIdAsync(id);
+            if (comment == null)
+                throw new Exception("Comentário não encontrado.");
+
+            comment.Content = newContent;
+            await _commentRepository.UpdateAsync(comment);
+            await _commentRepository.SaveChangesAsync();
+            return comment;
+        }
+
+        public async Task DeleteCommentAsync(int id)
+        {
+            await _commentRepository.DeleteAsync(id);
+            await _commentRepository.SaveChangesAsync();
         }
     }
 }

@@ -1,21 +1,22 @@
 ﻿using API_de_rede_social.domain.entities;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace API_de_rede_social.domain.repository
 {
-    public interface ICommentsRespository
+    public interface ICommentsRepository
     {
-      
-            Task <CommentEntities? > GetByIdAsync (int id);
+        Task<CommentEntities?> GetByIdAsync(int id);
 
-            Task<IEnumerable<CommentEntities>> GetByIdsAsync(Guid postId);
+        Task<IEnumerable<CommentEntities>> GetByPostIdAsync(Guid postId);
 
-            Task AddAsync(CommentEntities coment);
+        Task AddAsync(CommentEntities comment);
 
-            Task SaveChangESAsync(CommentEntities coment);
+        Task UpdateAsync(CommentEntities comment);
 
-            Task DeleteAsync(int id);
+        Task DeleteAsync(int id);
 
-            
-        }
+        Task SaveChangesAsync();
     }
-
+}
