@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="application\api\usecase\" />
     <Folder Include="domain\expection\" />
     <Folder Include="domain\ports\" />
     <Folder Include="infraestructure\http\controller\" />
