@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API_de_rede_social.domain.entities
@@ -6,31 +7,28 @@ namespace API_de_rede_social.domain.entities
     public class CommentEntities
     {
         [Key]
-
         public Guid Id { get; set; } = Guid.NewGuid(); // Id único para cada comentário
-
 
         [Required]
         [MaxLength(300)]
-        public string Content { get; set; } // Conteúdo do comentário
+        public string Content { get; set; } = string.Empty; // Conteúdo do comentário
+
+        // Relacionamento com Post
         [Required]
+        public Guid PostId { get; set; }
 
-        public Guid PostId { get; set; } // Id do post ao qual o comentário pertence
+        [ForeignKey("PostId")]
+        public PostEntities Post { get; set; } = null!;
 
-        [ForeignKey('PostId')]
-        public PostEntities Post { get; set; } // Referência ao post associado ao comentário
-        public DateTime CreateTime { get; set; } = DateTime.UtcNow; // Data e hora de criação do comentário
-        public DateTime UpdateTime { get; set; } = DateTime.UtcNow; // Data e hora da última atualização do comentário
-
+        // Relacionamento com User
         [Required]
-        public Guid UserId { get; set; } // Id do usuário que criou o comentário
+        public Guid UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public UserEntities User { get; set; } // Referência ao usuário que criou o comentário
+        public UserEntities User { get; set; } = null!;
 
-        public DateTime CreateAt { get; set; } = DateTim.utcNow;
-
-
-
+        // Datas
+        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
 }

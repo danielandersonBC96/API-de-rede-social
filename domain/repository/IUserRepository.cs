@@ -10,7 +10,7 @@ namespace API_de_rede_social.Domain.Repository
         Task<UserEntities> UpdateAsync(UserEntities user);
         Task DeleteAsync(Guid userId);
         Task SaveChangesAsync();
-        Task<UserEntities> AddAsync(object user);
+        
     }
 }
 

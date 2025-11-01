@@ -1,29 +1,26 @@
-﻿using Microsoft.Extensions.Hosting;
-using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
 
 namespace API_de_rede_social.domain.entities
 {
     public class UserEntities
     {
-        internal string Name;
+        public Guid Id { get; set; } = Guid.NewGuid();
 
-        [ConfigurationKeyName("id")]
+        public string Name { get; set; } = string.Empty;
 
-        public Guid Id { get; set; } =  Guid.NewGuid();
+        public string Email { get; set; } = string.Empty;
 
-        public string Namme { get; set;  } = string.Empty;
+        public string PasswordHash { get; set; } = string.Empty;
 
-        public String Email { get; set; } = string.Empty;
+        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
 
-        public String PasswordHash { get; set; } = string.Empty;
-
-        public ICollection<PostEntities> Post { get; set; } = new List<PostEntities>();
+        // Posts e comentários do usuário
+        public ICollection<PostEntities> Posts { get; set; } = new List<PostEntities>();
         public ICollection<CommentEntities> Comments { get; set; } = new List<CommentEntities>();
 
         // Seguidores e seguindo (self-referencing many-to-many)
         public ICollection<UserFollower> Followers { get; set; } = new List<UserFollower>();
         public ICollection<UserFollower> Following { get; set; } = new List<UserFollower>();
-        public object UserId { get; internal set; }
-        public DateTime CreatedAt { get; internal set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using API_de_rede_social.domain.entities;
+﻿using API_de_rede_social.application.usecases;
+using API_de_rede_social.domain.entities;
 using API_de_rede_social.domain.repository;
 using API_de_rede_social.Domain.Repository;
 
@@ -23,21 +24,30 @@ namespace API_de_rede_social.application.api.usecase
             userRepository = userRepository;
         }
 
+        public Task AddAsync(CommentEntities comment)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Execute(Guid userId, Guid postId, string content)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task ExecuteAsync(Guid userId, Guid postId, string content)
         {
             //Valida se o usuario existe 
 
             var user = await userRepository.GetAllAsync();
-
-            var user = await userRepository.GetByIdAsync(userId);
-            if(user==null)
+            _ = await userRepository.GetByIdAsync(userId);
+            if (user==null)
             {       
                 var comment = new CommentEntities
                 {
                     PostId = postId,
                     UserId = userId,
                     Content = content,
-                    CreatedAt = DateTime.UtcNow
+                   
                 };
 
                 //Persiste o comentário
