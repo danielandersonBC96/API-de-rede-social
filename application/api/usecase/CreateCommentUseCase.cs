@@ -37,7 +37,7 @@ namespace API_de_rede_social.application.api.usecase
         public async Task ExecuteAsync(Guid userId, Guid postId, string content)
         {
             //Valida se o usuario existe 
-
+             
             var user = await userRepository.GetAllAsync();
             _ = await userRepository.GetByIdAsync(userId);
             if (user==null)
