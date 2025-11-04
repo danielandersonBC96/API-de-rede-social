@@ -37,11 +37,11 @@ namespace API_de_rede_social.infraestructure.database
             // Configurações adicionais
 
             modelBuilder.Entity<PostEntities>()
-                .Property(p => p.CreateTime)
+                .Property(p => p.CreatedAt)
                 .HasDefaultValueSql("GETUTCDATE()");
 
             modelBuilder.Entity<CommentEntities>()
-                .Property(c=> c.CreateTime)
+                .Property(c=> c.CreatedAt)
                 .HasDefaultValueSql("GETUTCDATE()");
         }
     }
