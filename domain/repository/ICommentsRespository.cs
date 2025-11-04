@@ -7,16 +7,11 @@ namespace API_de_rede_social.domain.repository
 {
     public interface ICommentsRepository
     {
-        Task<CommentEntities?> GetByIdAsync(int id);
-
+        Task<CommentEntities?> GetByIdAsync(Guid commentId);
         Task<IEnumerable<CommentEntities>> GetByPostIdAsync(Guid postId);
-
         Task AddAsync(CommentEntities comment);
-
         Task UpdateAsync(CommentEntities comment);
-
-        Task DeleteAsync(int id);
-
+        Task DeleteAsync(Guid commentId);
         Task SaveChangesAsync();
     }
 }

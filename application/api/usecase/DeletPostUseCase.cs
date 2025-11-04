@@ -2,7 +2,7 @@
 
 namespace API_de_rede_social.application.api.usecase
 {
-    public class DeletPostUseCase : IDeletePostUseCase
+    public class DeletPostUseCase : IDeletPostUseCase
 
       {
         private readonly IPostRepository _postRepository;
