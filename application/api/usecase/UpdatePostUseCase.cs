@@ -1,7 +1,4 @@
-﻿
-using API_de_rede_social.Domain.Repository;
-
-
+﻿using API_de_rede_social.Domain.Repository;
 
 namespace API_de_rede_social.application.usecases.posts
 {
