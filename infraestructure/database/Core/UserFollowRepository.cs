@@ -1,8 +1,9 @@
 ﻿using API_de_rede_social.domain.entities;
+using API_de_rede_social.domain.repository;
 using API_de_rede_social.infraestructure.database;
 using Microsoft.EntityFrameworkCore;
 
-namespace API_de_rede_social.domain.repository
+namespace API_de_rede_social.infraestructure.database.Core
 {
     public class UserFollowRepository : IUserFollowRepository
     {
@@ -35,12 +36,14 @@ namespace API_de_rede_social.domain.repository
         public async Task<bool> IsFollowingAsync(Guid followerId, Guid followeeId)
         {
             return await _dbContext.UserFollowers
+                
                 .AnyAsync(uf => uf.FollowerId == followerId && uf.UserId == followeeId);
         }
 
         public async Task<IEnumerable<UserEntities>> GetFollowersAsync(Guid userId)
         {
             return await _dbContext.UserFollowers
+                
                 .Where(uf => uf.UserId == userId)
                 .Select(uf => uf.Follower)
                 .ToListAsync();

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API_de_rede_social.infraestructure.database.Core
 {
-    public class CommentRepository: ICommentsRespository;
+    public class CommentRepository: ICommentsRepository
     {
         public readonly SocialNetworkDBContext _context;
 
