@@ -1,3 +1,4 @@
+using API_de_rede_social.application.api.usecase;
 using API_de_rede_social.application.usecases.userfollow;
 
 namespace API_de_rede_social.application.service

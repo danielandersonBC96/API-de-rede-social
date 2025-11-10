@@ -12,6 +12,6 @@ namespace API_de_rede_social.domain.repository
         Task<bool> IsFollowingAsync(Guid followerId, Guid followeeId);
 
         Task<IEnumerable<UserEntities>> GetFollowersAsync(Guid userId);
-        Task<IEnumerable<UserEntities>> GetFollowingAsync(Guid followerId);
+        Task<IEnumerable<UserEntities>> GetFollowingAsync(Guid userId);
     }
 }
