@@ -2,7 +2,7 @@
 
 namespace API_de_rede_social.application.api.usecase.@interface
 {
-    internal interface IGetFollowersUseCase
+    public interface IGetFollowersUseCase
     {
         Task<IEnumerable<UserEntities>> ExecuteAsync(Guid userId);
     }

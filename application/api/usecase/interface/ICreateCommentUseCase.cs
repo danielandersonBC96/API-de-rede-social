@@ -6,5 +6,6 @@ namespace API_de_rede_social.application.usecases
     {
         Task AddAsync(CommentEntities comment);
         Task ExecuteAsync(Guid userId, Guid postId, string content);
+
     }
 }
