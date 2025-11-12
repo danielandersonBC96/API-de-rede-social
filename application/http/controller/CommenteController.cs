@@ -16,6 +16,7 @@ namespace API_de_rede_social.application.http.controller
         private readonly IGetCommentsByPostUseCase _getByPost;
 
         public CommentController(
+
             ICreateCommentUseCase create,
             IUpdateCommentUseCase update,
             IDeleteCommentUseCase delete,
