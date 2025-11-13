@@ -1,7 +1,7 @@
 ﻿
 using API_de_rede_social.Application.Service;
 using API_de_rede_social.domain.entities;
-using API_de_rede_social.Domain.Repository;
+using API_de_rede_social.domain.repository.repositories;
 
 namespace API_de_rede_social.Infraestructure.Persistence
 {

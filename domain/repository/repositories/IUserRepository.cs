@@ -1,6 +1,6 @@
 ﻿using API_de_rede_social.domain.entities;
 
-namespace API_de_rede_social.Domain.Repository
+namespace API_de_rede_social.domain.repository.repositories
 {
     public interface IUserRepository
     {

@@ -1,5 +1,5 @@
 ﻿using API_de_rede_social.domain.entities;
-using API_de_rede_social.Domain.Repository;
+using API_de_rede_social.domain.repository.repositories;
 using System;
 using System.Threading.Tasks;
 

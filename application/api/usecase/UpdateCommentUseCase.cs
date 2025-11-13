@@ -1,4 +1,4 @@
-﻿using API_de_rede_social.domain.repository;
+﻿using API_de_rede_social.domain.repository.repositories;
 
 namespace API_de_rede_social.application.usecases.comments
 {

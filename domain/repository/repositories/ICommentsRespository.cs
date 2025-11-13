@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace API_de_rede_social.domain.repository
+namespace API_de_rede_social.domain.repository.repositories
 {
     public interface ICommentsRepository
     {

@@ -1,5 +1,5 @@
 ﻿using API_de_rede_social.domain.entities;
-using API_de_rede_social.domain.repository;
+using API_de_rede_social.domain.repository.repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace API_de_rede_social.infraestructure.database.Core

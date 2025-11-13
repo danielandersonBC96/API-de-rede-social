@@ -1,4 +1,4 @@
-﻿using API_de_rede_social.domain.repository;
+﻿using API_de_rede_social.domain.repository.repositories;
 using API_de_rede_social.Domain.Repository;
 using System;
 using System.Threading.Tasks;
