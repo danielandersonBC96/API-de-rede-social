@@ -4,11 +4,11 @@
     {
         public Guid UserId{ get; set; }
 
-        public UserEntities User { get; set; }
+        public UserEntity User { get; set; }
 
         public Guid FollowerId { get; set; }
 
-        public UserEntities Follower { get; set; }
+        public UserEntity Follower { get; set; }
 
       
     }

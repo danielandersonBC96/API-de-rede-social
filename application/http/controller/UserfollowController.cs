@@ -1,5 +1,4 @@
 ﻿using API_de_rede_social.application.dto;
-using API_de_rede_social.application.dto.userfollow;
 using API_de_rede_social.application.service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +27,7 @@ namespace API_de_rede_social.application.http.controller
         [HttpPost("unfollow")]
         public async Task<IActionResult> Unfollow([FromBody] UnFollowRequest request)
         {
-            await _userFollowService.UnfollowAsync(request.FollowerId, request.FolloweeId);
+            await _userFollowService.UnfollowAsync(request.FollowerId,   request.FolloweeId);
             return Ok(new { message = "Você deixou de seguir este usuário." });
         }
 

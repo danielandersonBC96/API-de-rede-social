@@ -19,7 +19,6 @@ namespace API_de_rede_social.application.http.controller
         private readonly IGetPostByIdUseCase _getbyid;
         private readonly IGetAllPostUseCase _getAll;
 
-
         public PostController(
 
              ICreatePostUseCase create,
@@ -27,17 +26,15 @@ namespace API_de_rede_social.application.http.controller
              IDeletPostUseCase delete,
              IGetPostByIdUseCase getById,
              IGetAllPostUseCase getAll
-
-
-             )
+           )
         {
             _create = create;
             _update = update;
             _delete = delete;
             _getbyid = getById;
-            _getAll = getAll; 
+            _getAll = getAll; }
 
-        }
+
 
         //Criar um novo post 
 
@@ -97,7 +94,5 @@ namespace API_de_rede_social.application.http.controller
             var posts = await _getAll.ExecuteAsync();
             return Ok(posts);
         }
-
-
     }
 }

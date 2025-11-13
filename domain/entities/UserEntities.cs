@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace API_de_rede_social.domain.entities
+﻿namespace API_de_rede_social.domain.entities
 {
-    public class UserEntities
+    public class UserEntity
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; private set; }
+        public string Name { get; private set; }
+        public string Email { get; private set; }
 
-        public string Name { get; set; } = string.Empty;
+        public string PasswordHad { get; private set; }
 
-        public string Email { get; set; } = string.Empty;
+        public UserEntity(Guid id, string name, string email, string, string password)
+        {
 
-        public string PasswordHash { get; set; } = string.Empty;
+            Id = id;
+            Name = name;
+            Email = email;
+            PasswordHad = password;
+        }
 
-        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
-
-        // Posts e comentários do usuário
-        public ICollection<PostEntities> Posts { get; set; } = new List<PostEntities>();
-        public ICollection<CommentEntities> Comments { get; set; } = new List<CommentEntities>();
-
-        // Seguidores e seguindo (self-referencing many-to-many)
-        public ICollection<UserFollower> Followers { get; set; } = new List<UserFollower>();
-        public ICollection<UserFollower> Following { get; set; } = new List<UserFollower>();
     }
+
 }
