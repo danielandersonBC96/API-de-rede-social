@@ -14,73 +14,64 @@ namespace API_de_rede_social.domain.repository
             _db = db;
         }
 
-        //Seguir
+        // SEGUIR
         public async Task FollowAsync(Guid followerId, Guid followeeId)
         {
             // evita follow duplicado
-            var alreadyFollow = await _db.UserFollowers
-                .AnyAsync(x => x.FollowerId == followeeId && x.UserId == followeeId);
+            var alreadyFollowing = await _db.UserFollowers
+                .AnyAsync(x => x.FollowerId == followerId && x.UserId == followeeId);
 
-            if (alreadyFollow)
+            if (alreadyFollowing)
                 return;
 
             var follow = new UserFollowerEntities
             {
-                UserId = followerId,
-                FollowerId= followeeId
+                UserId = followeeId,      // o dono do perfil
+                FollowerId = followerId   // quem está seguindo
             };
 
             await _db.UserFollowers.AddAsync(follow);
             await _db.SaveChangesAsync();
         }
 
-        //deicar de seguir
-
-        public async Task UnFollowersAsync(Guid followerId, Guid followeeId)
+        // DEIXAR DE SEGUIR
+        public async Task UnfollowAsync(Guid followerId, Guid followeeId)
         {
-            var existin = await _db.UserFollowers.FirstOrDefaultAsync(x => x.FollowerId == followerId && x.UserId == followerId);
+            var existing = await _db.UserFollowers
+                .FirstOrDefaultAsync(x => x.FollowerId == followerId && x.UserId == followeeId);
 
-            if (existin == null)
+            if (existing == null)
                 return;
 
-            _db.UserFollowers.Remove(existin);
+            _db.UserFollowers.Remove(existing);
             await _db.SaveChangesAsync();
-
         }
 
-        //Verifica se segue 
-        public async Task<bool> IsFollowingAsync(Guid follewerId, Guid folleweeId)
+        // VERIFICA SE ESTÁ SEGUINDO
+        public async Task<bool> IsFollowingAsync(Guid followerId, Guid followeeId)
         {
-
             return await _db.UserFollowers
-                .AnyAsync(X => X.FollowerId 
-                == follewerId && X.UserId 
-                == folleweeId);
-
+                .AnyAsync(x => x.FollowerId == followerId && x.UserId == followeeId);
         }
 
-
-        //Lista quem segue o usuário 
-
-        public async Task<IAsyncEnumerable<UserEntity>> GetFollerAsync(Guid userId)
+        // LISTAR QUEM SEGUE O USUÁRIO
+        public async Task<IEnumerable<UserEntity>> GetFollowersAsync(Guid userId)
         {
-            return (IAsyncEnumerable<UserEntity>)await _db.UserFollowers
-               .Where(x => x.UserId == userId)
-               .Select(x => x.Follower)
-               .AsNoTracking()
-               .ToListAsync();
+            return await _db.UserFollowers
+                .Where(x => x.UserId == userId)
+                .Select(x => x.Follower)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
-        //lista quek esta seguindo o usuario 
-        public async Task<IEnumerable<UserEntity>>GetFollowAsync(Guid userId)
+        // LISTAR QUEM O USUÁRIO ESTÁ SEGUINDO
+        public async Task<IEnumerable<UserEntity>> GetFollowingAsync(Guid userId)
         {
-
             return await _db.UserFollowers
                 .Where(x => x.FollowerId == userId)
                 .Select(x => x.User)
                 .AsNoTracking()
                 .ToListAsync();
         }
-
     }
 }
