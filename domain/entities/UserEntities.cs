@@ -7,6 +7,7 @@
         public string Email { get; private set; }
 
         public string PasswordHad { get; private set; }
+        public object Followers { get; internal set; }
 
         public UserEntity(Guid id, string name, string email, string, string password)
         {

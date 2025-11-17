@@ -10,7 +10,7 @@ namespace API_de_rede_social.infraestructure.database
         {
         }
 
-        public DbSet<UserEntities> UserEntities { get; set; }
+        public DbSet<UserEntity> UserEntities { get; set; }
         public DbSet<PostEntities> PostEntities { get; set; }   
         public DbSet<CommentEntities> CommentEntities { get; set; }
         public DbSet<UserFollower> UserFollowers { get; set; }
