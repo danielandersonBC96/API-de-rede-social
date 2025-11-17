@@ -1,15 +1,12 @@
 ﻿namespace API_de_rede_social.domain.entities
 {
-    public class UserFollower
+    public class UserFollowerEntities
     {
-        public Guid UserId{ get; set; }
+        public Guid UserId { get; set; }          // o seguido
+        public UserEntity User { get; set; } = default!;
 
-        public UserEntity User { get; set; }
-
-        public Guid FollowerId { get; set; }
-
-        public UserEntity Follower { get; set; }
-
-      
+        public Guid FollowerId { get; set; }      // quem segue
+        public UserEntity Follower { get; set; } = default!;
     }
+
 }

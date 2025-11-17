@@ -1,23 +1,18 @@
-﻿namespace API_de_rede_social.domain.entities
+﻿using System;
+using System.Collections.Generic;
+
+namespace API_de_rede_social.domain.entities
 {
     public class UserEntity
     {
-        public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        public string Email { get; private set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; } = default!;
+        public string Email { get; set; } = default!;
 
-        public string PasswordHad { get; private set; }
-        public object Followers { get; internal set; }
+        // Quem me segue
+        public ICollection<UserFollowerEntities>? Followers { get; set; }
 
-        public UserEntity(Guid id, string name, string email, string, string password)
-        {
-
-            Id = id;
-            Name = name;
-            Email = email;
-            PasswordHad = password;
-        }
-
+        // Quem eu sigo
+        public ICollection<UserFollowerEntities>? Following { get; set; }
     }
-
 }

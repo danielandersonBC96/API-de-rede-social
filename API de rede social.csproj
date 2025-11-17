@@ -11,6 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="infraestructure\http\**" />
+    <Compile Remove="infraestructure\middleware\**" />
+    <Content Remove="infraestructure\http\**" />
+    <Content Remove="infraestructure\middleware\**" />
+    <EmbeddedResource Remove="infraestructure\http\**" />
+    <EmbeddedResource Remove="infraestructure\middleware\**" />
+    <None Remove="infraestructure\http\**" />
+    <None Remove="infraestructure\middleware\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,8 +34,6 @@
   <ItemGroup>
     <Folder Include="domain\expection\" />
     <Folder Include="domain\ports\" />
-    <Folder Include="infraestructure\http\controller\" />
-    <Folder Include="infraestructure\middleware\" />
     <Folder Include="infraestructure\utils\" />
     <Folder Include="infraestructure\security\" />
     <Folder Include="infraestructure\routes\" />

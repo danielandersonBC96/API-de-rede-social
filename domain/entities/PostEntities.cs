@@ -18,7 +18,7 @@ namespace API_de_rede_social.domain.entities
         public Guid UserId { get; set; } // Id do usuário que criou o post
 
         [ForeignKey("UserId")]
-        public UserEntities User { get; set; } = null!; // Referência ao usuário que criou o post
+        public UserEntity User { get; set; } = null!; // Referência ao usuário que criou o post
 
         public DateTime CreatedAt { get; private set; } = DateTime.UtcNow; // Data e hora de criação do post
 

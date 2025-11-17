@@ -25,7 +25,7 @@ namespace API_de_rede_social.domain.entities
         public Guid UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public UserEntities User { get; set; } = null!;
+        public UserEntity User { get; set; } = null!;
 
         // Datas
         public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;

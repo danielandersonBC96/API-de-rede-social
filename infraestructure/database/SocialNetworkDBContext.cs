@@ -13,7 +13,7 @@ namespace API_de_rede_social.infraestructure.database
         public DbSet<UserEntity> UserEntities { get; set; }
         public DbSet<PostEntities> PostEntities { get; set; }   
         public DbSet<CommentEntities> CommentEntities { get; set; }
-        public DbSet<UserFollower> UserFollowers { get; set; }
+        public DbSet<UserFollowerEntities> UserFollowers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,14 +21,14 @@ namespace API_de_rede_social.infraestructure.database
 
             // Configuração da relação muitos-para-muitos entre UserEntities e UserFollower
 
-            modelBuilder.Entity<UserFollower>()
+            modelBuilder.Entity<UserFollowerEntities>()
                 .HasKey(uf => new { uf.UserId, uf.FollowerId });
-            modelBuilder.Entity<UserFollower>()
+            modelBuilder.Entity<UserFollowerEntities>()
                 .HasOne(uf => uf.User)
                 .WithMany(u => u.Followers)
                 .HasForeignKey(uf => uf.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<UserFollower>()
+            modelBuilder.Entity<UserFollowerEntities>()
                 .HasOne(uf => uf.Follower)
                 .WithMany(u => u.Following)
                 .HasForeignKey(uf => uf.FollowerId)
