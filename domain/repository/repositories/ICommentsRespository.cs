@@ -10,5 +10,7 @@ namespace API_de_rede_social.domain.repository.repositories
         Task<CommentEntities> UpdateAsync(CommentEntities comment);
         Task DeleteAsync(Guid id);
         Task SaveChangesAsync();
+        Task<CommentEntities?> GetByIdAsync(int id);
+        Task DeleteAsync(int id);
     }
 }

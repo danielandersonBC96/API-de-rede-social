@@ -9,27 +9,27 @@ namespace API_de_rede_social.application.service
     {
 
         private readonly IUserRepository _userRepository;
-        private readonly UserEntities user;
+        private readonly UserEntity user;
 
         public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public async Task<UserEntities> GetByIdAsync(Guid userId)
+        public async Task<UserEntity> GetByIdAsync(Guid userId)
         {
 
             return await _userRepository.GetByIdAsync(userId);
         }
 
-        public async Task<IEnumerable<UserEntities>> GetAllAsync()
+        public async Task<IEnumerable<UserEntity>> GetAllAsync()
         {
             return await _userRepository.GetAllAsync();
         }
 
-        public async Task<UserEntities> CreateAsync(string name, string email)
+        public async Task<UserEntity> CreateAsync(string name, string email)
         {
-            var uaer= new UserEntities
+            var uaer= new UserEntity
             {
                 Id = Guid.NewGuid(),
                 Name =  name,

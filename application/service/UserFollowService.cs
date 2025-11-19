@@ -8,13 +8,13 @@ namespace API_de_rede_social.application.service
     {
         private readonly IFollowUserUseCase _follow;
         private readonly IUnfollowUserUseCase _unfollow;
-        private readonly IGetFollowersUseCase _getFollowers;
+        private readonly api.usecase.@interface.IGetFollowersUseCase _getFollowers;
         private readonly IGetFollowingUseCase _getFollowing;
 
         internal UserFollowService(
             IFollowUserUseCase follow,
             IUnfollowUserUseCase unfollow,
-            IGetFollowersUseCase getFollowers,
+            api.usecase.@interface.IGetFollowersUseCase getFollowers,
             IGetFollowingUseCase getFollowing)
         {
             _follow = follow;
@@ -29,10 +29,10 @@ namespace API_de_rede_social.application.service
         Task IUserFollowService.UnfollowAsync(Guid followerId, Guid followeeId)
             => _unfollow.ExecuteAsync(followerId, followeeId);
 
-        Task<IEnumerable<UserEntities>> IUserFollowService.GetFollowersAsync(Guid userId)
+        Task<IEnumerable<UserEntity>> IUserFollowService.GetFollowersAsync(Guid userId)
             => _getFollowers.ExecuteAsync(userId);
 
-        Task<IEnumerable<UserEntities>> IUserFollowService.GetFollowingAsync(Guid userId)
+        Task<IEnumerable<UserEntity>> IUserFollowService.GetFollowingAsync(Guid userId)
             => _getFollowing.ExecuteAsync(userId);
     }
 }

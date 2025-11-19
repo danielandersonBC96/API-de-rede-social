@@ -1,6 +1,6 @@
 ﻿using API_de_rede_social.domain.entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
+
 
 namespace API_de_rede_social.infraestructure.database
 {

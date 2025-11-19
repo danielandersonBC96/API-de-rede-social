@@ -2,11 +2,11 @@
 
 namespace API_de_rede_social.application.usecases.comments
 {
-    public class UpdateCommentUseCase : IUpdateCommentUseCase
+    public class UpdateCommentUseCase :IUpdateCommentUseCase
     {
-        private readonly ICommentsRepository _commentRepository;
+        private readonly ICommentRepository _commentRepository;
 
-        public UpdateCommentUseCase(ICommentsRepository commentRepository)
+        public UpdateCommentUseCase(ICommentRepository commentRepository)
         {
             _commentRepository = commentRepository;
         }
@@ -14,12 +14,13 @@ namespace API_de_rede_social.application.usecases.comments
         public async Task ExecuteAsync(Guid commentId, string newContent)
         {
             var comment = await _commentRepository.GetByIdAsync(commentId);
-            if (comment == null)
-                throw new Exception("Comentário não encontrado.");
+            if (comment is null)
+                throw new InvalidOperationException("Comentário não encontrado.");
 
             comment.Content = newContent;
+            comment.UpdatedAt = DateTime.UtcNow; // se existir esse campo
 
-            await _commentRepository.UpdateAsync(comment); // precisa existir UpdateAsync no repository
+            await _commentRepository.UpdateAsync(comment);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace API_de_rede_social.application.api.usecase
         private readonly ICreateCommentUseCase _commentRepository;
         private readonly IUserRepository userRepository;
 
-        public CreateCommentUseCase (ICommentsRepository commentsRepository, IUserRepository userRepository)
+        public CreateCommentUseCase (ICommentRepository commentsRepository, IUserRepository userRepository)
         {
             _commentRepository = (ICreateCommentUseCase?)commentsRepository;
             this.userRepository = userRepository;

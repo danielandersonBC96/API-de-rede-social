@@ -1,12 +1,10 @@
 ﻿using API_de_rede_social.domain.entities;
 
-namespace API_de_rede_social.application.service.@interface
+public interface IUserFollowService
 {
-    public interface IUserFollowService
-    {
-        Task FollowAsync(Guid followerId, Guid followeeId);
-        Task UnfollowAsync(Guid followerId, Guid followeeId);
-        Task<IEnumerable<UserEntities>> GetFollowersAsync(Guid userId);
-        Task<IEnumerable<UserEntities>> GetFollowingAsync(Guid userId);
-    }
+    Task FollowAsync(Guid followerId, Guid followeeId);
+    Task UnfollowAsync(Guid followerId, Guid followeeId);
+
+    Task<IEnumerable<UserEntity>> GetFollowersAsync(Guid userId);
+    Task<IEnumerable<UserEntity>> GetFollowingAsync(Guid userId);
 }

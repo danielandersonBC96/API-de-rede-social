@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,8 +19,10 @@ namespace API_de_rede_social.domain.entities
         [ForeignKey("UserId")]
         public UserEntity User { get; set; } = null!; // Referência ao usuário que criou o post
 
-        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow; // Data e hora de criação do post
 
         public ICollection<CommentEntities> Comments { get; set; } = new List<CommentEntities>(); // Comentários associados ao post
+        public string? ImageUrl { get; internal set; }
+
+        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     }
 }

@@ -9,9 +9,9 @@ namespace API_de_rede_social.application.service
 {
     public class CommentService : ICommentService
     {
-        private readonly ICommentsRepository _commentRepository;
+        private readonly ICommentRepository _commentRepository;
 
-        public CommentService( ICommentsRepository commentRepository)
+        public CommentService( ICommentRepository commentRepository)
         {
             _commentRepository = commentRepository;
         }

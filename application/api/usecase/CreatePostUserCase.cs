@@ -1,7 +1,5 @@
 ﻿using API_de_rede_social.domain.entities;
 using API_de_rede_social.domain.repository.repositories;
-using System;
-using System.Threading.Tasks;
 
 namespace API_de_rede_social.application.usecases.posts
 {
@@ -10,13 +8,15 @@ namespace API_de_rede_social.application.usecases.posts
         private readonly IPostRepository _postRepository;
         private readonly IUserRepository _userRepository;
 
-        public CreatePostUseCase(IPostRepository postRepository, IUserRepository userRepository)
+        public CreatePostUseCase(
+            IPostRepository postRepository,
+            IUserRepository userRepository)
         {
             _postRepository = postRepository;
             _userRepository = userRepository;
         }
 
-        public async Task ExecuteAsync(Guid userId, string content)
+        public async Task ExecuteAsync(Guid userId, string content, string? imageUrl = null)
         {
             // Verifica se o usuário existe
             var user = await _userRepository.GetByIdAsync(userId);
@@ -28,6 +28,7 @@ namespace API_de_rede_social.application.usecases.posts
             {
                 UserId = userId,
                 Content = content,
+                ImageUrl = imageUrl,
                 CreatedAt = DateTime.UtcNow
             };
 

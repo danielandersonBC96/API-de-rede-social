@@ -7,9 +7,9 @@ namespace API_de_rede_social.application.usecases.comments
 {
     public class DeleteCommentUseCase : IDeleteCommentUseCase
     {
-        private readonly ICommentsRepository _commentRepository;
+        private readonly ICommentRepository _commentRepository;
 
-        public DeleteCommentUseCase(ICommentsRepository commentRepository)
+        public DeleteCommentUseCase(ICommentRepository commentRepository)
         {
             _commentRepository = commentRepository;
         }
