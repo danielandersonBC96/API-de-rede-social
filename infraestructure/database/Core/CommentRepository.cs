@@ -4,26 +4,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API_de_rede_social.infraestructure.database.Core
 {
-    public class CommentRepository: ICommentsRepository
+    public class CommentRepository : ICommentRepository
     {
-        public readonly SocialNetworkDBContext _context;
+        private readonly SocialNetworkDBContext _context;
 
         public CommentRepository(SocialNetworkDBContext context)
         {
             _context = context;
         }
 
-        public Task AddAsync( CommentEntities coment)
+        public async Task AddAsync(CommentEntities comment)
         {
-            throw new NotImplementedException();
+            await _context.CommentEntities.AddAsync(comment);
         }
 
-        public async Task<CommentEntities?> GetByIdAsync(Guid postId)
+        public async Task<CommentEntities?> GetByIdAsync(Guid id)
         {
-            return await _context.CommentEntities.Include(e => e.User).Where(e => e.PostId == postId).ToListAsync();
-
+            return await _context.CommentEntities
+                .Include(c => c.User)
+                .Include(c => c.Post)
+                .FirstOrDefaultAsync(c => c.Id == id);
         }
-
 
         public async Task<IEnumerable<CommentEntities>> GetByPostIdAsync(Guid postId)
         {
@@ -33,10 +34,24 @@ namespace API_de_rede_social.infraestructure.database.Core
                 .ToListAsync();
         }
 
+        public async Task UpdateAsync(CommentEntities comment)
+        {
+            _context.CommentEntities.Update(comment);
+            await Task.CompletedTask;
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            var existing = await GetByIdAsync(id);
+            if (existing != null)
+            {
+                _context.CommentEntities.Remove(existing);
+            }
+        }
+
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
         }
-
     }
 }

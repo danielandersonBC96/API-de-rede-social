@@ -23,6 +23,6 @@ namespace API_de_rede_social.domain.entities
         public ICollection<CommentEntities> Comments { get; set; } = new List<CommentEntities>(); // Comentários associados ao post
         public string? ImageUrl { get; internal set; }
 
-        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }

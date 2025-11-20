@@ -14,5 +14,6 @@ namespace API_de_rede_social.domain.entities
 
         // Quem eu sigo
         public ICollection<UserFollowerEntities>? Following { get; set; }
+        public DateTime CreatedAt { get; internal set; }
     }
 }

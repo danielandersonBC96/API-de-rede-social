@@ -33,33 +33,28 @@ namespace API_de_rede_social.domain.repository
         }
 
         // Criar comentário
-        public async Task<CommentEntities> AddAsync(CommentEntities comment)
+        public async Task AddAsync(CommentEntities comment)
         {
             await _db.CommentEntities.AddAsync(comment);
-            await _db.SaveChangesAsync();
-            return comment;
         }
 
         // Atualizar comentário
-        public async Task<CommentEntities> UpdateAsync(CommentEntities comment)
+        public async Task UpdateAsync(CommentEntities comment)
         {
             _db.CommentEntities.Update(comment);
-            await _db.SaveChangesAsync();
-            return comment;
         }
 
         // Deletar comentário
         public async Task DeleteAsync(Guid id)
         {
-            var existing = await _db.CommentEntities.FirstOrDefaultAsync(c => c.Id == id);
+            var existing = await _db.CommentEntities
+                .FirstOrDefaultAsync(c => c.Id == id);
 
-            if (existing == null)
-                return;
-
-            _db.CommentEntities.Remove(existing);
-            await _db.SaveChangesAsync();
+            if (existing != null)
+                _db.CommentEntities.Remove(existing);
         }
 
+        // Commit final
         public async Task SaveChangesAsync()
         {
             await _db.SaveChangesAsync();

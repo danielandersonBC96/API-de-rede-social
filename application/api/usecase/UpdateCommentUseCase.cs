@@ -1,8 +1,9 @@
 ﻿using API_de_rede_social.domain.repository.repositories;
+using API_de_rede_social.domain.repository.repositories;
 
 namespace API_de_rede_social.application.usecases.comments
 {
-    public class UpdateCommentUseCase :IUpdateCommentUseCase
+    public class UpdateCommentUseCase : IUpdateCommentUseCase
     {
         private readonly ICommentRepository _commentRepository;
 
@@ -18,9 +19,10 @@ namespace API_de_rede_social.application.usecases.comments
                 throw new InvalidOperationException("Comentário não encontrado.");
 
             comment.Content = newContent;
-            comment.UpdatedAt = DateTime.UtcNow; // se existir esse campo
+            comment.UpdatedAt = DateTime.UtcNow;
 
             await _commentRepository.UpdateAsync(comment);
         }
     }
 }
+

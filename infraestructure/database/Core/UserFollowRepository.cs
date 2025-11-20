@@ -16,7 +16,12 @@ namespace API_de_rede_social.infraestructure.database.Core
 
         public async Task FollowAsync(Guid followerId, Guid followeeId)
         {
-            var relation = new UserFollower { FollowerId = followerId, UserId = followeeId };
+            var relation = new UserFollowerEntities
+            {
+                FollowerId = followerId,
+                UserId = followeeId
+            };
+
             await _dbContext.UserFollowers.AddAsync(relation);
             await _dbContext.SaveChangesAsync();
         }
@@ -36,23 +41,23 @@ namespace API_de_rede_social.infraestructure.database.Core
         public async Task<bool> IsFollowingAsync(Guid followerId, Guid followeeId)
         {
             return await _dbContext.UserFollowers
-                
                 .AnyAsync(uf => uf.FollowerId == followerId && uf.UserId == followeeId);
         }
 
-        public async Task<IEnumerable<UserEntities>> GetFollowersAsync(Guid userId)
+        // Quem segue esse usuário
+        public async Task<IEnumerable<UserEntity>> GetFollowersAsync(Guid userId)
         {
             return await _dbContext.UserFollowers
-                
                 .Where(uf => uf.UserId == userId)
                 .Select(uf => uf.Follower)
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<UserEntities>> GetFollowingAsync(Guid followerId)
+        // Quem esse usuário está seguindo
+        public async Task<IEnumerable<UserEntity>> GetFollowingAsync(Guid userId)
         {
             return await _dbContext.UserFollowers
-                .Where(uf => uf.FollowerId == followerId)
+                .Where(uf => uf.FollowerId == userId)
                 .Select(uf => uf.User)
                 .ToListAsync();
         }

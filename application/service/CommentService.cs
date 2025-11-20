@@ -1,9 +1,6 @@
 ﻿using API_de_rede_social.domain.entities;
 using API_de_rede_social.domain.repository.repositories;
-using API_de_rede_social.infraestructure.database.Core;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+
 
 namespace API_de_rede_social.application.service
 {
@@ -11,7 +8,7 @@ namespace API_de_rede_social.application.service
     {
         private readonly ICommentRepository _commentRepository;
 
-        public CommentService( ICommentRepository commentRepository)
+        public CommentService(ICommentRepository commentRepository)
         {
             _commentRepository = commentRepository;
         }
@@ -21,7 +18,7 @@ namespace API_de_rede_social.application.service
             return await _commentRepository.GetByPostIdAsync(postId);
         }
 
-        public async Task<CommentEntities?> GetCommentByIdAsync(int id)
+        public async Task<CommentEntities?> GetCommentByIdAsync(Guid id)
         {
             return await _commentRepository.GetByIdAsync(id);
         }
@@ -37,26 +34,27 @@ namespace API_de_rede_social.application.service
             };
 
             await _commentRepository.AddAsync(comment);
-            await _commentRepository.SaveChangesAsync();
             return comment;
         }
 
-        public async Task<CommentEntities> UpdateCommentAsync(int id, string newContent)
+        public async Task<CommentEntities> UpdateCommentAsync(Guid id, string newContent)
         {
             var comment = await _commentRepository.GetByIdAsync(id);
+
             if (comment == null)
                 throw new Exception("Comentário não encontrado.");
 
             comment.Content = newContent;
+            comment.UpdatedAt = DateTime.UtcNow;
+
             await _commentRepository.UpdateAsync(comment);
-            await _commentRepository.SaveChangesAsync();
+
             return comment;
         }
 
-        public async Task DeleteCommentAsync(int id)
+        public async Task DeleteCommentAsync(Guid id)
         {
             await _commentRepository.DeleteAsync(id);
-            await _commentRepository.SaveChangesAsync();
         }
     }
 }

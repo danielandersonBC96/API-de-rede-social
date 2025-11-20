@@ -1,7 +1,6 @@
-﻿using API_de_rede_social.domain.repository.repositories;
-using API_de_rede_social.Domain.Repository;
-using System;
-using System.Threading.Tasks;
+﻿using API_de_rede_social.application.api.usecase.@interface;
+using API_de_rede_social.domain.repository.repositories;
+
 
 namespace API_de_rede_social.application.usecases.comments
 {

@@ -28,7 +28,8 @@ namespace API_de_rede_social.domain.entities
         public UserEntity User { get; set; } = null!;
 
         // Datas
-        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
 }

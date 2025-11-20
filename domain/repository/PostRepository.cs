@@ -17,7 +17,9 @@ namespace API_de_rede_social.domain.repository
 
         public async Task<PostEntities> GetByIdAsync(Guid postId)
         {
+#pragma warning disable CS8603 // Possível retorno de referência nula.
             return await _db.PostEntities.AsNoTracking().FirstOrDefaultAsync(x => x.Id == postId);
+#pragma warning restore CS8603 // Possível retorno de referência nula.
         }
 
         public async Task<IEnumerable<PostEntities>> GetAllAsync()

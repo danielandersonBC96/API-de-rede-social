@@ -6,5 +6,6 @@
         public string Contente { get; set; } = string.Empty;//Novo Conteudo
 
         public string? ImageUrl { get; set;} //Nova Imagem
+        public string? Content { get; internal set; }
     }
 }

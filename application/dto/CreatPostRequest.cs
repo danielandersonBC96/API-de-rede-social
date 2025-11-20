@@ -2,7 +2,7 @@
 {
     public class CreatPostRequest
     {
-        public Guid UserId { get; set; }; //Usuário que criou o post
+        public Guid UserId { get; set; } //Usuário que criou o post
         public string Content { get; set; } = string.Empty; // Testo principal do post
         public string? ImageUrl { get; set; } //image do post 
 

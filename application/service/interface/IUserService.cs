@@ -4,8 +4,8 @@ namespace API_de_rede_social.Application.Service
 {
     public interface IUserService
     {
-        Task<UserEntities?> GetByIdAsync(Guid userId);
-        Task<IEnumerable<UserEntities>> GetAllAsync();
-        Task<UserEntities> CreateAsync(string name, string email);
+        Task<UserEntity?> GetByIdAsync(Guid userId);
+        Task<IEnumerable<UserEntity>> GetAllAsync();
+        Task<UserEntity> CreateAsync(string name, string email);
     }
 }

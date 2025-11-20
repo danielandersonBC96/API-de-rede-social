@@ -1,6 +1,7 @@
 ﻿using API_de_rede_social.domain.entities;
 using API_de_rede_social.domain.repository;
 using API_de_rede_social.domain.repository.repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace API_de_rede_social.infraestructure.database.Core
 {
@@ -12,31 +13,28 @@ namespace API_de_rede_social.infraestructure.database.Core
         {
             _context = context;
         }
-        
 
-        public async Task<IEnumerable<UserEntities>> GetAllAsync()
-        {
-            return await _context.UserEntities.ToListAsync();
-        }
-        public  async Task<UserEntities> AddAsync(UserEntities user)
+
+        public async Task<IEnumerable<UserEntity>> GetAllAsync() => await _context.UserEntities.ToListAsync();
+        public  async Task<UserEntity> AddAsync(UserEntity user)
         {
             _context.UserEntities.Add(user);
             await _context.SaveChangesAsync();
             return user;
         }
 
-        public async Task<UserEntities> GetByEmailAsync(string email)
+        public async Task<UserEntity> GetByEmailAsync(string email)
         {
             return await _context.UserEntities.FirstOrDefaultAsync(u => u.Email == email);
         }
 
-         public async Task<UserEntities?> GetByIdAsync(Guid userId)
+         public async Task<UserEntity?> GetByIdAsync(Guid userId)
         {
             return await _context.UserEntities.FindAsync(userId);
         }
 
 
-        public async Task<UserEntities> UpdateAsync(UserEntities user)
+        public async Task<UserEntity> UpdateAsync(UserEntity user)
         {
             _context.UserEntities.Update(user);
             await _context.SaveChangesAsync();

@@ -6,11 +6,9 @@ namespace API_de_rede_social.domain.repository.repositories
     {
         Task<CommentEntities?> GetByIdAsync(Guid id);
         Task<IEnumerable<CommentEntities>> GetByPostIdAsync(Guid postId);
-        Task<CommentEntities> AddAsync(CommentEntities comment);
-        Task<CommentEntities> UpdateAsync(CommentEntities comment);
+        Task AddAsync(CommentEntities comment);
+        Task UpdateAsync(CommentEntities comment);
         Task DeleteAsync(Guid id);
         Task SaveChangesAsync();
-        Task<CommentEntities?> GetByIdAsync(int id);
-        Task DeleteAsync(int id);
     }
 }
