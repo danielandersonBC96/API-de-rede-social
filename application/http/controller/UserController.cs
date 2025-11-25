@@ -16,11 +16,10 @@ namespace API_de_rede_social.application.http.controller
 
         public UserController(
             ICreateUserUseCase createUser,
-             IGetUserByIdUserCase getById,
+            IGetUserByIdUserCase getById,
             IGetAllUserCase getAll,
             IUpdateUserUseCase updateUser,
-            IDeleteUserCase deleteUser
-        )
+            IDeleteUserCase deleteUser)
         {
             _createUser = createUser;
             _getById = getById;
@@ -33,8 +32,8 @@ namespace API_de_rede_social.application.http.controller
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] UserEntity request)
         {
-            var createdUser = await _createUser.ExecuteAsync(request.Name, request.Email);
-            return Ok(createdUser);
+            var created = await _createUser.ExecuteAsync(request.Name, request.Email);
+            return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
 
         // GET BY ID

@@ -2,9 +2,11 @@
 
 namespace API_de_rede_social.application.api.usecase.@interface
 {
-    internal interface IUpdateUserUseCase
-    {
-        Task ExecuteAsyn(UserEntity model);
-        Task ExecuteAsync(Guid id, string name, string email);
-    }
+   
+        public interface IUpdateUserUseCase
+        {
+            Task<UserEntity> ExecuteAsync(Guid id, string name, string email);
+        }
+
+    
 }

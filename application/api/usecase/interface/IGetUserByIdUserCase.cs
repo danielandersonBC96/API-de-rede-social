@@ -1,7 +1,6 @@
-﻿namespace API_de_rede_social.application.api.usecase.@interface
+﻿using API_de_rede_social.domain.entities;
+
+public interface IGetUserByIdUserCase
 {
-    internal interface IGetUserByIdUserCase
-    {
-        Task ExecuteAsync(Guid id);
-    }
+    Task<UserEntity?> ExecuteAsync(Guid id);
 }

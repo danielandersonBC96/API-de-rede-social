@@ -1,7 +1,6 @@
-﻿namespace API_de_rede_social.application.api.usecase.@interface
+﻿using API_de_rede_social.domain.entities;
+
+public interface ICreateUserUseCase
 {
-    public interface ICreateUserUseCase
-    {
-        Task ExecuteAsync(string name, string email);
-    }
+    Task<UserEntity> ExecuteAsync(string name, string email);
 }

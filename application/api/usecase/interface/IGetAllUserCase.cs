@@ -1,7 +1,10 @@
-﻿namespace API_de_rede_social.application.api.usecase.@interface
+﻿using API_de_rede_social.domain.entities;
+
+namespace API_de_rede_social.application.api.usecase.@interface
 {
-    internal interface IGetAllUserCase
+    public interface IGetAllUserCase
     {
-        Task ExecuteAsync();
+        Task<IEnumerable<UserEntity>> ExecuteAsync();
     }
+
 }
