@@ -1,9 +1,6 @@
-﻿using API_de_rede_social.domain.entities;
-
-namespace API_de_rede_social.application.api.usecase.@interface
+﻿namespace API_de_rede_social.application.http.controller
 {
-    public interface IGetFollowersUseCase
+    internal interface IGetFollowingUseCase
     {
-        Task<IEnumerable<UserEntity>> ExecuteAsync(Guid userId);
     }
 }

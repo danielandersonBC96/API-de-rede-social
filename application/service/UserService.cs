@@ -1,24 +1,20 @@
 ﻿using API_de_rede_social.Application.Service;
 using API_de_rede_social.domain.entities;
 using API_de_rede_social.domain.repository.repositories;
-using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace API_de_rede_social.application.service
 {
     public class UserService : IUserService
     {
-
         private readonly IUserRepository _userRepository;
-        private readonly UserEntity user;
 
         public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public async Task<UserEntity> GetByIdAsync(Guid userId)
+        public async Task<UserEntity?> GetByIdAsync(Guid userId)
         {
-
             return await _userRepository.GetByIdAsync(userId);
         }
 
@@ -29,15 +25,33 @@ namespace API_de_rede_social.application.service
 
         public async Task<UserEntity> CreateAsync(string name, string email)
         {
-            var uaer= new UserEntity
+            var user = new UserEntity
             {
                 Id = Guid.NewGuid(),
-                Name =  name,
+                Name = name,
                 Email = email,
                 CreatedAt = DateTime.UtcNow
             };
+
             return await _userRepository.AddAsync(user);
         }
 
+        public async Task<UserEntity> UpdateAsync(Guid id, string name, string email)
+        {
+            var existing = await _userRepository.GetByIdAsync(id);
+            if (existing == null)
+                throw new Exception("Usuário não encontrado.");
+
+            existing.Name = name;
+            existing.Email = email;
+
+            return await _userRepository.UpdateAsync(existing);
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            await _userRepository.DeleteAsync(id);
+            await _userRepository.SaveChangesAsync();
+        }
     }
 }
