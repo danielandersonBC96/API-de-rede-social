@@ -1,6 +1,6 @@
 ﻿using API_de_rede_social.domain.entities;
 
-namespace API_de_rede_social.application.api.usecase.@interface.User
+namespace API_de_rede_social.application.api.@interface.User
 {
     public interface IRegisterUserUseCase
     {

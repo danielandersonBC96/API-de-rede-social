@@ -1,6 +1,5 @@
 using API_de_rede_social.application.api.usecase.Coment;
 using API_de_rede_social.application.api.usecase.Follewrs;
-using API_de_rede_social.application.api.usecase.@interface.Post;
 using API_de_rede_social.application.api.usecase.post;
 using API_de_rede_social.domain.repository;
 using API_de_rede_social.domain.repository.repositories;

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace API_de_rede_social.application.api.usecase.@interface.Comment
+namespace API_de_rede_social.application.api.@interface.Comment
 {
     public interface IGetCommentsByPostUseCase
     {

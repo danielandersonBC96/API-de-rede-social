@@ -1,5 +1,5 @@
-﻿using API_de_rede_social.domain.entities;
-using API_de_rede_social.domain.repository;
+﻿using API_de_rede_social.application.api.@interface.Comment;
+using API_de_rede_social.domain.entities;
 using API_de_rede_social.domain.repository.repositories;
 
 namespace API_de_rede_social.application.api.usecase.Coment

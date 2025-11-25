@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace API_de_rede_social.application.api.usecase.@interface.Post
+namespace API_de_rede_social.application.api.@interface.Post
 {
     public interface ICreatePostUseCase
     {

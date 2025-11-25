@@ -1,4 +1,4 @@
-﻿namespace API_de_rede_social.application.api.usecase.@interface.Follewrs
+﻿namespace API_de_rede_social.application.api.@interface.Follewrs
 {
     internal interface IFollowUserUseCase
     {

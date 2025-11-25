@@ -1,4 +1,5 @@
-﻿using API_de_rede_social.domain.entities;
+﻿using API_de_rede_social.application.api.usecase.User;
+using API_de_rede_social.domain.entities;
 using API_de_rede_social.domain.repository.repositories;
 
 namespace API_de_rede_social.application.api.usecase.User
@@ -12,7 +13,7 @@ namespace API_de_rede_social.application.api.usecase.User
             _repo = repo;
         }
 
-        public async Task<UserEntity?> ExecuteAsybc(Guid id)
+        public async Task<UserEntity?> ExecuteAsync(Guid id)
         {
             return await _repo.GetByIdAsync(id);
         }
