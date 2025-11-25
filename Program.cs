@@ -37,7 +37,7 @@ builder.Services.AddScoped<IUserFollowRepository, UserFollowRepository>();
 
 builder.Services.AddScoped<ICreatePostUseCase, CreatePostUseCase>();
 builder.Services.AddScoped<IDeletPostUseCase, DeletPostUseCase>();
-builder.Services.AddScoped<IGetPostByIdUseCase, IGetPostByIdUseCase>();
+builder.Services.AddScoped<IGetUserByIdUserCase, IGetUserByIdUserCase>();
 builder.Services.AddScoped<IGetAllPostUseCase,  IGetAllPostUseCase>();
 
 // -------------------------

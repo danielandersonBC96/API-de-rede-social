@@ -13,14 +13,14 @@ namespace API_de_rede_social.application.http.controller
         private readonly ICreatePostUseCase _createPost;
         private readonly IUpdatePostUseCase _updatePost;
         private readonly IDeletPostUseCase _deletePost;
-        private readonly IGetPostByIdUseCase _getPostById;
+        private readonly IGetUserByIdUserCase _getPostById;
         private readonly IGetAllPostUseCase _getAllPosts;
 
         public PostController(
             ICreatePostUseCase createPost,
             IUpdatePostUseCase updatePost,
             IDeletPostUseCase deletePost,
-            IGetPostByIdUseCase getPostById,
+            IGetUserByIdUserCase getPostById,
             IGetAllPostUseCase getAllPosts)
         {
             _createPost = createPost;

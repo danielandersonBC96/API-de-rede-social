@@ -1,6 +1,8 @@
-﻿using API_de_rede_social.domain.entities;
-
-public interface IGetUserByIdUserCase
+﻿
+namespace API_de_rede_social.application.http.controller
 {
-    Task<UserEntity?> ExecuteAsync(Guid id);
+    public interface IGetUserById
+    {
+        Task ExecuteAsync(Guid id);
+    }
 }
