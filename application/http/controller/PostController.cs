@@ -1,7 +1,5 @@
-﻿using API_de_rede_social.application.api.usecase;
-using API_de_rede_social.application.api.usecase.@interface;
+﻿using API_de_rede_social.application.api.usecase.@interface.Post;
 using API_de_rede_social.application.dto;
-using API_de_rede_social.application.usecases.posts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_de_rede_social.application.http.controller

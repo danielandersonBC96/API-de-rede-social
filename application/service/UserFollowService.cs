@@ -1,5 +1,4 @@
-using API_de_rede_social.application.api.usecase.@interface;
-using API_de_rede_social.application.usecases.userfollow;
+using API_de_rede_social.application.api.usecase.@interface.Follewrs;
 using API_de_rede_social.domain.entities;
 
 namespace API_de_rede_social.application.service
@@ -8,13 +7,13 @@ namespace API_de_rede_social.application.service
     {
         private readonly IFollowUserUseCase _follow;
         private readonly IUnfollowUserUseCase _unfollow;
-        private readonly api.usecase.@interface.IGetFollowersUseCase _getFollowers;
+        private readonly IGetFollowersUseCase _getFollowers;
         private readonly IGetFollowingUseCase _getFollowing;
 
         internal UserFollowService(
             IFollowUserUseCase follow,
             IUnfollowUserUseCase unfollow,
-            api.usecase.@interface.IGetFollowersUseCase getFollowers,
+            IGetFollowersUseCase getFollowers,
             IGetFollowingUseCase getFollowing)
         {
             _follow = follow;
