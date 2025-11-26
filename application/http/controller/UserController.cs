@@ -1,4 +1,5 @@
-﻿using API_de_rede_social.domain.entities;
+﻿using API_de_rede_social.application.api.@interface.User;
+using API_de_rede_social.domain.entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_de_rede_social.application.http.controller
@@ -35,13 +36,13 @@ namespace API_de_rede_social.application.http.controller
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
 
-        // GET BY ID
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var user = await _getById.ExecuteAsync(id);
             return user is null ? NotFound() : Ok(user);
         }
+
 
         // GET ALL
         [HttpGet]

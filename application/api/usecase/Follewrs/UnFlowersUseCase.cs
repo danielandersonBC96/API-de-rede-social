@@ -1,4 +1,4 @@
-﻿using API_de_rede_social.application.api.@interface.Post;
+﻿using API_de_rede_social.application.api.@interface.Follewrs;
 using API_de_rede_social.domain.repository.repositories;
 
 namespace API_de_rede_social.application.api.usecase.Follewrs
