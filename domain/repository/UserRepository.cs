@@ -21,6 +21,8 @@ namespace API_de_rede_social.domain.repository
                 .FirstOrDefaultAsync(x => x.Id == userId);
         }
 
+        
+
         public async Task<IEnumerable<UserEntity>> GetAllAsync()
         {
             return await _db.UserEntities

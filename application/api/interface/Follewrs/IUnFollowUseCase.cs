@@ -3,7 +3,5 @@
     public interface IUnfollowUserUseCase
     {
         Task ExecuteAsync(Guid followerId, Guid followeeId);
-        Task FollowAsync(Guid followerId, Guid followeerId);
-        Task IsFollowingAsync(Guid followerId, Guid followeerId);
     }
 }

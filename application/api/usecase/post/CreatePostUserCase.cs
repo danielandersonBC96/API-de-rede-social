@@ -13,30 +13,33 @@ namespace API_de_rede_social.application.api.usecase.post
             IPostRepository postRepository,
             IUserRepository userRepository)
         {
-            _postRepository = postRepository
-                ?? throw new ArgumentNullException(nameof(postRepository));
-            _userRepository = userRepository
-                ?? throw new ArgumentNullException(nameof(userRepository));
+            _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
 
         public async Task<Guid> ExecuteAsync(Guid userId, string content, string? imageUrl = null)
         {
-            if (string.IsNullOrWhiteSpace(content))
-                throw new ArgumentException("O conteúdo do post não pode ser vazio.", nameof(content));
+            // validações básicas
+            if (userId == Guid.Empty) throw new ArgumentException("userId inválido.", nameof(userId));
+            if (string.IsNullOrWhiteSpace(content)) throw new ArgumentException("Conteúdo do post é obrigatório.", nameof(content));
 
-            // Verifica se o usuário existe
+            // verifica se o usuário existe
             var user = await _userRepository.GetByIdAsync(userId);
+            if (user is null) throw new InvalidOperationException("Usuário não encontrado.");
 
-            if (user is null)
-                throw new KeyNotFoundException("Usuário não encontrado.");
-
-            var post = new PostEntities { UserId = userId, Content = content.Trim(), ImageUrl = imageUrl, CreatedAt = DateTime.UtcNow, };
+            var post = new PostEntities
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                Content = content,
+                ImageUrl = imageUrl,
+                CreatedAt = DateTime.UtcNow
+            };
 
             await _postRepository.AddAsync(post);
 
-            return post.Id; // se a entidade tiver Id gerado
+            // retorna apenas o Id (conforme a interface)
+            return post.Id;
         }
-
-      
     }
 }

@@ -12,21 +12,25 @@ namespace API_de_rede_social.domain.repository
         public PostRepository(SocialNetworkDBContext db)
         {
             _db = db;
-
         }
 
-        public async Task<PostEntities> GetByIdAsync(Guid postId)
+        // Buscar por ID
+        public async Task<PostEntities?> GetByIdAsync(Guid postId)
         {
-#pragma warning disable CS8603 // Possível retorno de referência nula.
-            return await _db.PostEntities.AsNoTracking().FirstOrDefaultAsync(x => x.Id == postId);
-#pragma warning restore CS8603 // Possível retorno de referência nula.
+            return await _db.PostEntities
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == postId);
         }
 
+        // Buscar todos
         public async Task<IEnumerable<PostEntities>> GetAllAsync()
         {
-            return await _db.PostEntities.AsNoTracking().ToListAsync();
+            return await _db.PostEntities
+                .AsNoTracking()
+                .ToListAsync();
         }
 
+        // Criar post
         public async Task<PostEntities> AddAsync(PostEntities post)
         {
             await _db.PostEntities.AddAsync(post);
@@ -34,6 +38,7 @@ namespace API_de_rede_social.domain.repository
             return post;
         }
 
+        // Atualizar post
         public async Task<PostEntities> UpdateAsync(PostEntities post)
         {
             _db.PostEntities.Update(post);
@@ -41,26 +46,23 @@ namespace API_de_rede_social.domain.repository
             return post;
         }
 
-        public async Task DeleteAsync(Guid postId )
+        // Remover post
+        public async Task DeleteAsync(Guid postId)
         {
-            var existing = await _db.PostEntities.FirstOrDefaultAsync(x => x.Id == postId);
+            var existing = await _db.PostEntities
+                .FirstOrDefaultAsync(x => x.Id == postId);
 
             if (existing is null)
-                return;
+                return; // silencioso ou jogar exceção — depende da regra
 
             _db.PostEntities.Remove(existing);
             await _db.SaveChangesAsync();
-
         }
 
-
+        // SaveChanges separado (caso futuro de UnitOfWork)
         public async Task SaveChangesAsync()
         {
             await _db.SaveChangesAsync();
         }
-
-
     }
-    
 }
-

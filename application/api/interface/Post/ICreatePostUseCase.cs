@@ -1,11 +1,4 @@
-﻿using System;
-using System;
-using System.Threading.Tasks;
-
-namespace API_de_rede_social.application.api.@interface.Post
+﻿public interface ICreatePostUseCase
 {
-    public interface ICreatePostUseCase
-    {
-        Task<Guid> ExecuteAsync(Guid userId, string content, string? imageUrl = null);
-    }
+    Task<Guid> ExecuteAsync(Guid userId, string content, string? imageUrl = null);
 }

@@ -1,4 +1,6 @@
-﻿using API_de_rede_social.application.dto;
+﻿using API_de_rede_social.application.api.@interface;
+using API_de_rede_social.application.api.@interface.Comment;
+using API_de_rede_social.application.dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_de_rede_social.application.http.controller

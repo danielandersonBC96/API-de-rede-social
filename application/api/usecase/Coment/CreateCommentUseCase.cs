@@ -1,4 +1,4 @@
-﻿using API_de_rede_social.application.api.@interface.Comment;
+﻿using API_de_rede_social.application.api.@interface;
 using API_de_rede_social.domain.entities;
 using API_de_rede_social.domain.repository.repositories;
 
@@ -10,7 +10,7 @@ namespace API_de_rede_social.application.api.usecase.Coment
         private readonly ICreateCommentUseCase _commentRepository;
         private readonly IUserRepository userRepository;
 
-        public CreateCommentUseCase (ICommentRepository commentsRepository, IUserRepository userRepository)
+        public CreateCommentUseCase(ICommentRepository commentsRepository, IUserRepository userRepository)
         {
             _commentRepository = (ICreateCommentUseCase?)commentsRepository;
             this.userRepository = userRepository;
@@ -36,17 +36,17 @@ namespace API_de_rede_social.application.api.usecase.Coment
         public async Task ExecuteAsync(Guid userId, Guid postId, string content)
         {
             //Valida se o usuario existe 
-             
+
             var user = await userRepository.GetAllAsync();
             _ = await userRepository.GetByIdAsync(userId);
-            if (user==null)
-            {       
+            if (user == null)
+            {
                 var comment = new CommentEntities
                 {
                     PostId = postId,
                     UserId = userId,
                     Content = content,
-                   
+
                 };
 
                 //Persiste o comentário
@@ -56,4 +56,3 @@ namespace API_de_rede_social.application.api.usecase.Coment
         }
     }
 }
- 

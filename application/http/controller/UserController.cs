@@ -37,9 +37,9 @@ namespace API_de_rede_social.application.http.controller
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
+        public async Task<IActionResult> GetById(Guid id, string user )
         {
-            var user = await _getById.ExecuteAsync(id);
+            await _getById.ExecuteAsync(id);
             return user is null ? NotFound() : Ok(user);
         }
 

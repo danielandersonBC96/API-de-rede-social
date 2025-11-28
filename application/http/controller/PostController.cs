@@ -1,4 +1,5 @@
-﻿using API_de_rede_social.application.dto;
+﻿using API_de_rede_social.application.api.@interface.Post;
+using API_de_rede_social.application.dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_de_rede_social.application.http.controller
@@ -10,14 +11,14 @@ namespace API_de_rede_social.application.http.controller
         private readonly ICreatePostUseCase _createPost;
         private readonly IUpdatePostUseCase _updatePost;
         private readonly IDeletPostUseCase _deletePost;
-        private readonly IGetUserByIdUserCase _getPostById;
+        private readonly IGetPostByIdUseCase _getPostById;
         private readonly IGetAllPostUseCase _getAllPosts;
 
         public PostController(
             ICreatePostUseCase createPost,
             IUpdatePostUseCase updatePost,
             IDeletPostUseCase deletePost,
-            IGetUserByIdUserCase getPostById,
+            IGetPostByIdUseCase getPostById,
             IGetAllPostUseCase getAllPosts)
         {
             _createPost = createPost;
@@ -27,47 +28,58 @@ namespace API_de_rede_social.application.http.controller
             _getAllPosts = getAllPosts;
         }
 
-        // Criar novo Post
+        // --------------------------------------------
+        // Criar novo post
+        // --------------------------------------------
+        [HttpPost]
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreatPostRequest request)
         {
             if (request == null)
-                return BadRequest(new { message = "Requisição inválida." });
+                return BadRequest("Requisição inválida.");
 
-            var post = await _createPost.ExecuteAsync(request.UserId, request.Content);
+            Guid postId = await _createPost.ExecuteAsync(request.UserId, request.Content);
 
-            return Ok(new
-            {
-                message = "Post criado com sucesso.",
-                data = post
-            });
+            return CreatedAtAction(
+                nameof(GetById),
+                new { postId = postId },
+                new { message = "Post criado com sucesso", id = postId }
+            );
         }
 
+
+        // --------------------------------------------
         // Atualizar Post
-        [HttpPut("{postId}")]
+        // --------------------------------------------
+        [HttpPut("{postId:guid}")]
         public async Task<IActionResult> Update(Guid postId, [FromBody] UpdatePostRequest request)
         {
             if (request == null || string.IsNullOrWhiteSpace(request.Content))
-                return BadRequest(new { message = "O conteúdo do post não pode ser vazio." });
+                return BadRequest("O conteúdo do post não pode ser vazio.");
 
             await _updatePost.ExecuteAsync(postId, request.Content);
 
             return Ok(new { message = "Post atualizado com sucesso." });
         }
 
+        // --------------------------------------------
         // Deletar Post
-        [HttpDelete("{postId}")]
+        // --------------------------------------------
+        [HttpDelete("{postId:guid}")]
         public async Task<IActionResult> Delete(Guid postId)
         {
             await _deletePost.ExecuteAsync(postId);
             return NoContent();
         }
 
+        // --------------------------------------------
         // Buscar post por ID
-        [HttpGet("{postId}")]
+        // --------------------------------------------
+        [HttpGet("{postId:guid}")]
         public async Task<IActionResult> GetById(Guid postId)
         {
-            var post = await _getPostById.ExecuteAsync(postId);
+            var post = await _getPostById.EntitiesAsync(postId);
 
             if (post == null)
                 return NotFound(new { message = "Post não encontrado." });
@@ -75,11 +87,13 @@ namespace API_de_rede_social.application.http.controller
             return Ok(post);
         }
 
+        // --------------------------------------------
         // Buscar todos os posts
+        // --------------------------------------------
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(Guid UserId)
         {
-            var posts = await _getAllPosts.ExecuteAsync();
+            var posts = await _getAllPosts.ExecuteAsync(UserId);
             return Ok(posts);
         }
     }
